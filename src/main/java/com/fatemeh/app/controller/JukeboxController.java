@@ -33,13 +33,9 @@ public class JukeboxController {
                                              @RequestParam(value = "limit", defaultValue = "10", required = false) int limit) throws Exception {
 
         List<Jukebox> jukeboxList = new ArrayList<>();
-//        try {
             List<JukeboxDto> jukeboxDtos = jukeboxService.findPaginatedByOffset(id, model, offset, limit);
             jukeboxDtos.stream().map(jukeboxDto -> jukeModelBuilder.jukeModelBuilder(jukeboxDto)).
                     forEachOrdered(jukeboxList::add);
-//        } catch (Exception e) {
-//            e.getMessage();
-//        }
 
         return jukeboxList;
     }
